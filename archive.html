@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellar Language Archive - Preserving Endangered Languages</title>
+    <style>
+        :root {
+            --primary: #1a237e;
+            --light: #c5cae9;
+            --dark: #121858;
+            --text: #ffffff;
+            --text-light: #fafafa;
+            --bg: #000000; 
+            --card: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--text-light);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .intro-section {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .stars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .star-card {
+            background-color: var(--card);
+            color: #000000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        .star-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .star-header {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .star-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .star-description {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .languages-count {
+            display: inline-block;
+            background-color: var(--light);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .languages-count {
+            display: inline-block;
+            background-color: var(--light);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .results-section {
+            margin: 2rem 0;
+            display: none;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .results-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .back-button {
+            background-color: var(--light);
+            color: var(--primary);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .language-list {
+            list-style-type: none;
+        }
+
+        .language-category {
+            margin-bottom: 2rem;
+        }
+
+        .category-title {
+            background-color: var(--light);
+            color: var(--primary);
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .language-item {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .language-name {
+            font-weight: 500;
+        }
+
+        .language-info {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background-color: var(--primary);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-links {
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            margin: 0 0.5rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .stars-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav style="background-color: rgba(0, 0, 0, 0.6); padding: 15px; text-align: center; font-family: 'Space Grotesk', sans-serif;">
+        <a href="index.html" style="color: #49b2ee; margin: 0 15px; text-decoration: none; font-weight: 600;">Home</a>
+        <a href="solution.html" style="color: #49b2ee; margin: 0 15px; text-decoration: none; font-weight: 600;">Solution</a>
+        <a href="about.html" style="color: #49b2ee; margin: 0 15px; text-decoration: none; font-weight: 600;">About</a>
+        <a href="archive.html" style="color: #49b2ee; margin: 0 15px; text-decoration: none; font-weight: 600;">Language Archive</a>
+        <a href="myth.html" style="color: #49b2ee; margin: 0 15px; text-decoration: none; font-weight: 600;">Myth</a>
+        <a href="star_scanner.html" style="color: #49b2ee; margin: 0 15px; text-decoration: none; font-weight: 600;">Star Scanner</a>
+    </nav>
+    
+    <header>
+        <div class="container">
+            <h1>Stellar Language Archive</h1>
+            <p class="subtitle">Preserving Earth's linguistic heritage through seven satellite data repositories</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="intro-section">
+            <h2>Explore Languages by Satellite Region</h2>
+            <p>Click on a region to discover the languages preserved in each satellite repository</p>
+        </section>
+        
+        <section class="stars-grid" id="starsGrid">
+            <!-- Aurora Region -->
+            <div class="star-card" id="auroraCard">
+                <div class="star-header">Aurora (Arctic & Circumpolar)</div>
+                <div class="star-content">
+                    <p class="star-description">Description of Aurora and its languages.</p>
+                    <span class="languages-count">1000 Languages</span>
+                </div>
+            </div>
+            
+            <!-- Other Regions (not shown for brevity) -->
+        </section>
+
+        <section class="results-section" id="resultsSection">
+            <div class="results-header">
+                <h2 class="results-title" id="resultsTitle">Languages in Region</h2>
+                <button class="back-button" id="backButton">Back to All Regions</button>
+            </div>
+            <div id="languageResults"></div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 StarSeeds Project. Designed for the Future of Human Expression.
+    </footer>
+
+    <script>
+document.getElementById('auroraCard').addEventListener('click', function() {
+    document.getElementById('starsGrid').style.display = 'none';  // Hide the grid of regions
+    document.getElementById('resultsSection').style.display = 'block';  // Show the language results
+
+    const resultsTitle = document.getElementById('resultsTitle');
+    resultsTitle.textContent = "Aurora (Arctic & Circumpolar) - Language Repositories";
+
+    const languageResults = document.getElementById('languageResults');
+    languageResults.innerHTML = "";  // Clear any previous content
+
+    const categories = [
+        { 
+            name: "Critically Endangered", 
+            languages: [
+                { name: "Enets", info: "40 speakers" },
+                { name: "Selkup", info: "1,500 speakers" },
+                { name: "Ket", info: "210 speakers" },
+                { name: "Nivkh", info: "200 speakers" },
+                { name: "Yupik (Sirenik)", info: "extinct since 1997" },
+                { name: "Copper Island Aleut/Mednyj Aleut", info: "nearly extinct, ~5 speakers" },
+                { name: "Negidal", info: "fewer than 10 speakers" },
+                { name: "Oroch", info: "nearly extinct, fewer than 10 speakers" }
+            ]
+        },
+        { 
+            name: "Highly Vulnerable", 
+            languages: [
+                { name: "Aleut", info: "~300 speakers" },
+                { name: "Mansi", info: "~3,000 speakers" },
+                { name: "Even", info: "~5,700 speakers" },
+                { name: "Nganasan", info: "~125 speakers" },
+                { name: "Dolgan", info: "~1,000 speakers" },
+                { name: "Yukaghir", info: "370 speakers total" },
+                { name: "Koryak", info: "~1,700 speakers" },
+                { name: "Alutor", info: "~200 speakers" },
+                { name: "Udege", info: "~100 speakers" },
+                { name: "Ulch", info: "150 speakers" },
+                { name: "Orok/Uilta", info: "30-50 speakers" },
+                { name: "Tofalar", info: "~93 speakers" }
+            ]
+        },
+        { 
+            name: "Climate Vulnerable", 
+            languages: [
+                { name: "Chukchi", info: "~5,000 speakers" },
+                { name: "Khanty", info: "~9,500 speakers" },
+                { name: "Mansi", info: "~3,000 speakers" },
+                { name: "Even", info: "~5,700 speakers" }
+            ]
+        },
+        { 
+            name: "Already Extinct", 
+            languages: [
+                { name: "Eyak", info: "extinct since 2008" },
+                { name: "Kerek", info: "extinct since 2005" }
+            ]
+        }
+    ];
+
+    categories.forEach(category => {
+        const categoryDiv = document.createElement('div');
+        categoryDiv.className = 'language-category';
+        
+        const categoryTitle = document.createElement('div');
+        categoryTitle.className = 'category-title';
+        categoryTitle.textContent = category.name;
+        categoryDiv.appendChild(categoryTitle);
+
+        category.languages.forEach(language => {
+            const languageItem = document.createElement('div');
+            languageItem.className = 'language-item';
+            languageItem.innerHTML = `
+                <span class="language-name">${language.name}</span>
+                <span class="language-info">${language.info}</span>
+            `;
+            categoryDiv.appendChild(languageItem);
+        });
+
+        languageResults.appendChild(categoryDiv);
+    });
+});
+
+// Back button functionality
+document.getElementById('backButton').addEventListener('click', function() {
+    document.getElementById('starsGrid').style.display = 'grid';  // Show the regions grid again
+    document.getElementById('resultsSection').style.display = 'none';  // Hide the results section
+});
+    </script>
+
+</body>
+</html>

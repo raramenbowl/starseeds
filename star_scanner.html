@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Seven Stars Language Archive - Star Scanner" />
+  <title>Star Scanner - Seven Stars Language Archive</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/star-themes.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'arial', sans-serif;
+      background: url('https://opensource.com/sites/default/files/2023-02/standing8.png') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    header nav {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 1em;
+      text-align: center;
+    }
+
+    header nav a {
+      margin: 0 1em;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 80vh;
+      text-align: center;
+      padding: 2em;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 1em;
+    }
+
+    #scanButton {
+      padding: 1em 2em;
+      font-size: 1.2em;
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 1em;
+    }
+
+    #starResult {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 1.5em;
+      margin-top: 2em;
+      max-width: 600px;
+      border-radius: 12px;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1em;
+      background: rgba(0, 0, 0, 0.6);
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      color: white;
+      font-size: 0.9em;
+    }
+  </style>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      const scanBtn = document.getElementById('scanButton');
+      const resultBox = document.getElementById('starResult');
+      const starName = document.getElementById('starName');
+      const starDescription = document.getElementById('starDescription');
+
+      const stars = [
+        {
+          name: "Aurora (Arctic & Circumpolar)",
+          desc: "🌌 Climate knowledge, snow vocabulary, survival songs<br>Themes: snow, silence, resilience"
+        },
+        {
+          name: "Sundra (South & Southeast Asia)",
+          desc: "🌺 Sacred rivers and temple tongues, rainforest chants<br>Themes: river gods, elephant dreams, village fires"
+        },
+        {
+          name: "Oba (Sub-Saharan Africa)",
+          desc: "🪘 Tonal languages and click consonants<br>Themes: moon drums, antelope mothers, baobab trees"
+        },
+        {
+          name: "Atzlán (Mesoamerica & the Andes)",
+          desc: "🌽 Agricultural and cosmological lexicons<br>Themes: corn spirits, hummingbirds, volcano sleep"
+        },
+        {
+          name: "Orion (European & Mediterranean)",
+          desc: "🏛 Forgotten roots of Western script<br>Themes: wind over ruins, laurel sleep, sea-borne lull"
+        },
+        {
+          name: "Moku (Oceania & Pacific Islands)",
+          desc: "🌊 Story systems tied to stars and oceans<br>Themes: canoe cradles, reef songs, turtle lull"
+        },
+        {
+          name: "Shān (Central & East Asia)",
+          desc: "⛰ Nomadic myths and mountain lexicons<br>Themes: horse dreams, moon tea, silk winds"
+        }
+      ];
+
+      scanBtn.addEventListener('click', () => {
+        const pick = stars[Math.floor(Math.random() * stars.length)];
+        starName.innerHTML = pick.name;
+        starDescription.innerHTML = pick.desc;
+        resultBox.style.display = 'block';
+      });
+    });
+  </script>
+</head>
+<body>
+
+  <nav style="background-color: rgba(0, 0, 0, 0.6); padding: 15px; text-align: center; font-family: 'Space Grotesk', sans-serif;">
+    <a href="index.html" style="color: #49b2ee; margin: 0 15px; text-decoration: none; font-weight: 600;">Home</a>
+    <a href="solution.html" style="color: #49b2ee; margin: 0 15px; text-decoration: none; font-weight: 600;">Solution</a>
+    <a href="about.html" style="color: #49b2ee; margin: 0 15px; text-decoration: none; font-weight: 600;">About</a>
+    <a href="archive.html" style="color: #49b2ee; margin: 0 15px; text-decoration: none; font-weight: 600;">Language Archive</a>
+    <a href="myth.html" style="color: #49b2ee; margin: 0 15px; text-decoration: none; font-weight: 600;">Myth</a>
+    <a href="star_scanner.html" style="color: #49b2ee; margin: 0 15px; text-decoration: none; font-weight: 600;">Star Scanner</a>
+  </nav>
+
+  <main>
+    <h1>🌠 Star Scanner</h1>
+    <p>Scan the sky to discover one of the Seven Stars—guardians of lost tongues.</p>
+    <button id="scanButton">🔍 Scan the Sky</button>
+
+    <div id="starResult">
+      <h2 id="starName"></h2>
+      <p id="starDescription"></p>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 StarSeeds Project. Designed for the Future of Human Expression.
+  </footer>
+</body>
+</html>
+
